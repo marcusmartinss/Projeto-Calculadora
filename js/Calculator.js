@@ -85,6 +85,10 @@ class Calculator {
             return
         }
 
+        if (this.currentOperationText.innerText) {
+            
+        }
+
         this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation
         // remove o ultimo caracter do innerText,
         // que seria da operação, e adicionaria a nova
@@ -97,7 +101,6 @@ class Calculator {
         current = null,
         previous = null
     ) {
-        console.log(operationValue, operation, current, previous)
 
         if (operationValue === null) {
             this.currentOperationText.innerText += this.currentOperation
@@ -136,23 +139,3 @@ class Calculator {
         this.processOperation(operation)
     }
 }
-
-const calc = new Calculator(previousOperationText, currentOperationText)
-
-buttons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        // para cada botao, no evento "click" sera executado isto
-        // recebento parametro "e" como o evento
-        const value = e.target.innerText
-        // value recebe o texto dentro da tag
-        // do objeto botao clicado
-
-        if ( +value >= 0 || value === "." ) {
-            // o operador "+" transforma value no tipo number
-            // o if else separa valores para numeros e as operacoes
-            calc.addDigit(value)
-        } else {
-            calc.processOperation(value)
-        }
-    })
-})
